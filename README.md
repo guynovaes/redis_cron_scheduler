@@ -22,8 +22,6 @@ export REDIS_CRON_AUTO_START=true
     resources :redis_jobs, only: [:index]
   end
 
-
-
 ### Features do Dashboard:
 - 📊 Estatísticas em tempo real
 - 👀 Visualização de todas as filas

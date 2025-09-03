@@ -8,12 +8,12 @@ require 'redis_cron_scheduler/version'
 Gem::Specification.new do |spec|
   spec.name          = "redis_cron_scheduler"
   spec.version       = RedisCronScheduler::VERSION
-  spec.authors       = ["Seu Nome"]
-  spec.email         = ["seu@email.com"]
+  spec.authors       = ["Guy Novaes"]
+  spec.email         = ["guynovaes@gmail.com"]
 
   spec.summary       = "Redis-based cron scheduler and queue worker"
   spec.description   = "A distributed cron scheduler and background job worker using Redis with web dashboard"
-  spec.homepage      = "https://github.com/seu-user/redis_cron_scheduler"
+  spec.homepage      = "https://github.com/guynovaes/redis_cron_scheduler"
   spec.license       = "MIT"
 
   # Especifica arquivos manualmente (elimina warning do git)
