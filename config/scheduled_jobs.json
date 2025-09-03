@@ -1,0 +1,12 @@
+{
+  "jobs": [
+    {
+      "name": "example_job",
+      "job_class": "ExampleJob",
+      "cron_expression": "0 * * * *",
+      "arguments": [],
+      "queue": "default",
+      "description": "Example job running hourly"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+<!-- lib/redis_cron_scheduler/web/views/redis_jobs/index.html.erb -->
+<h1 class="mb-4">Painel Redis Jobs</h1>
+
+<table class="table table-striped table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th>Fila</th>
+      <th>Pending</th>
+      <th>Scheduled</th>
+      <th>Retry</th>
+      <th>Running</th>
+      <th>Morto</th>
+    </tr>
+  </thead>
+  <tbody id="queues-table-body">
+    <% @queues_info.each do |queue, info| %>
+      <tr>
+        <td><%= queue %></td>
+        <td class="pending"><%= info[:pending] %></td>
+        <td class="scheduled"><%= info[:scheduled] %></td>
+        <td class="retry"><%= info[:retry] %></td>
+        <td class="running"><%= info[:running] %></td>
+        <td class="dead"><%= info[:dead] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script>
+function fetchQueueData() {
+  fetch("/redis_cron/redis_jobs.json")
+    .then(res => res.json())
+    .then(data => {
+      const tbody = document.getElementById('queues-table-body');
+      tbody.innerHTML = '';
+      for (const [queue, info] of Object.entries(data)) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${queue}</td>
+          <td class="pending">${info.pending}</td>
+          <td class="scheduled">${info.scheduled}</td>
+          <td class="retry">${info.retry}</td>
+          <td class="running">${info.running}</td>
+          <td class="dead">${info.dead}</td>
+        `;
+        tbody.appendChild(tr);
+      }
+    })
+    .catch(err => console.error("Erro ao atualizar painel:", err));
+}
+
+// Atualiza a cada 5 segundos
+setInterval(fetchQueueData, 5000);
+</script>
+
+<style>
+.pending { color: blue; font-weight: bold; }
+.scheduled { color: orange; font-weight: bold; }
+.retry { color: red; font-weight: bold; }
+.running { color: green; font-weight: bold; }
+</style>
