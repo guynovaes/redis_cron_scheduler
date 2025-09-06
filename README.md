@@ -39,4 +39,4 @@ end
 - 💀 Dead jobs
 - 🏃 Jobs em execução
 - ⚡ Ações: retry, delete, retry all, delete all
-- 
+
